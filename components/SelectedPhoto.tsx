@@ -5,15 +5,15 @@ import Button from "./Button";
 
 import { titleToSlug } from "../util/titleToSlug";
 import { useAppContext } from "../contexts/appContext";
+import Layout from "./Layout";
 
 interface Props {}
 
 const Photo = (props: Props) => {
   const { selectedDate } = useAppContext();
   const { data: date, isLoading, error } = useDate(selectedDate);
-  console.log(date);
   return (
-    <>
+    <Layout>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {date && (
@@ -24,10 +24,18 @@ const Photo = (props: Props) => {
               <p>{date.explanation}</p>
             </div>
           </div>
-          <Image src={date.url} alt={date.title} layout="fill" />
+          {date.url ? (
+            <Image
+              src={date.url}
+              alt="Astronomy Picture of the Day"
+              layout="fill"
+            />
+          ) : (
+            <p>loading...</p>
+          )}
         </div>
       )}
-    </>
+    </Layout>
   );
 };
 

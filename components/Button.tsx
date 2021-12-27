@@ -9,7 +9,7 @@ interface Props {
   link?: boolean;
   href?: string;
   max?: boolean;
-  action?: () => void;
+  onClick?: () => void;
 }
 
 const Button = (props: Props) => {
@@ -18,9 +18,8 @@ const Button = (props: Props) => {
       {props.link ? (
         // @ts-ignore
         <Link href={props.href}>
-          <a>
+          <a onClick={props.onClick}>
             <div
-              onClick={() => props.action}
               className={`font-bold py-2 px-4 rounded cursor-pointer  transition-all duration-200 ${
                 props.center ? "text-center" : ""
               } ${props.max && "max-w-max"} ${
@@ -35,7 +34,6 @@ const Button = (props: Props) => {
         </Link>
       ) : (
         <div
-          onClick={props.action}
           className={`font-bold py-2 px-4 rounded cursor-pointer  transition-all duration-200 ${
             props.center ? "text-center" : ""
           } ${

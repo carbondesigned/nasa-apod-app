@@ -8,17 +8,17 @@ interface Props {}
 
 const SliderImages = (props: Props) => {
   const { data: dates, isLoading, error } = useDates();
-  console.log(dates);
   return (
     <div>
       {isLoading && <LoadingSpinner />}
       {error && <p>Error: {error.message}</p>}
-      <div className="snap-x gap-10 overflow-x-scroll w-full inline-flex snap-mandatory">
-        {dates &&
-          dates.map((img: DateImageType) => (
+      {dates && dates.length > 0 && (
+        <div className="snap-x gap-10 overflow-x-scroll w-full inline-flex snap-mandatory px-20">
+          {dates?.map((img: DateImageType) => (
             <Photo date={img} key={img.title} />
           ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

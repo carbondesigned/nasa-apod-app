@@ -9,11 +9,13 @@ interface Props {
 }
 
 const Photo = ({ date }: Props) => {
+  console.log(date.date);
   const { setSelectedDate } = useAppContext();
   return (
     <div className="w-full overflow-hidden rounded-3xl relative">
       <div className="z-10 bg-gradient-to-t from-black to-transparent absolute inset-0 flex flex-col-reverse p-12">
         <div className="flex flex-col gap-2">
+          <span>{date.date}</span>
           <h2 className="text-4xl">{date.title}</h2>
           <p className="truncate">{date.explanation}</p>
           <Button
@@ -21,7 +23,7 @@ const Photo = ({ date }: Props) => {
             secondary
             link
             href={`/apod/${titleToSlug(date.title)}`}
-            action={setSelectedDate(date.date)}
+            onClick={() => setSelectedDate(date.date)}
           >
             View
           </Button>
@@ -31,7 +33,7 @@ const Photo = ({ date }: Props) => {
         src={date.url}
         alt={date.title}
         layout="fixed"
-        width={1000}
+        width={900}
         height={800}
       />
     </div>

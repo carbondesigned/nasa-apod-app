@@ -9,7 +9,7 @@ export interface DateImageType {
   url: string;
 }
 const fetchDate = async (date: any) => {
-  const { data } = await api.get(`&${date}`);
+  const { data } = await api.get(``, { params: { date: date } });
   return data;
 };
 

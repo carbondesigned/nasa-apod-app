@@ -11,7 +11,7 @@ export function useAppContext() {
 }
 
 export function AppProvider({ children }: Props) {
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState("");
   const state = {
     selectedDate,
     setSelectedDate,

@@ -11,14 +11,16 @@ interface DatesImageType {
   url: string;
 }
 const fetchDates = async () => {
-  const { data } = await axios.get(
-    "https://api.nasa.gov/planetary/apod?api_key=quZGuY4cnsKZfxCeQ7HtpybgKYdudJWJdFEwyIBk&start_date=2021-12-01"
-  );
+  const { data } = await api.get(``, {
+    params: {
+      start_date: "2021-12-10",
+    },
+  });
   return data;
 };
 
 const useDates = () => {
-  return useQuery<DatesImageType, Error>("today", fetchDates);
+  return useQuery<DatesImageType[], Error>("today", fetchDates);
 };
 
 export { useDates, fetchDates };

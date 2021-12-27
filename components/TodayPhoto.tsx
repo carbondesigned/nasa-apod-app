@@ -14,12 +14,11 @@ interface Props {
 const Photo = (props: Props) => {
   const { setSelectedDate } = useAppContext();
   const { data: today, isLoading, error } = useToday();
-  console.log(today);
   return (
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      {today && (
+      {today && !isLoading && (
         <div
           className={`${
             props.menu
@@ -41,18 +40,22 @@ const Photo = (props: Props) => {
                   secondary
                   link
                   href={`/apod/${titleToSlug(today.title)}`}
-                  action={() => setSelectedDate(today.date)}
+                  onClick={() => setSelectedDate(today.date)}
                 >
                   View
                 </Button>
               </div>
             </div>
           )}
-          <Image
-            src={today.hdurl}
-            alt="Astronomy Picture of the Day"
-            layout="fill"
-          />
+          {today.url ? (
+            <Image
+              src={today.url}
+              alt="Astronomy Picture of the Day"
+              layout="fill"
+            />
+          ) : (
+            <p>loading...</p>
+          )}
         </div>
       )}
     </>
