@@ -9,10 +9,9 @@ interface Props {
 }
 
 const Photo = ({ date }: Props) => {
-  console.log(date.date);
   const { setSelectedDate } = useAppContext();
   return (
-    <div className="w-full overflow-hidden rounded-3xl relative">
+    <div className="w-full rounded-3xl relative">
       <div className="z-10 bg-gradient-to-t from-black to-transparent absolute inset-0 flex flex-col-reverse p-12">
         <div className="flex flex-col gap-2">
           <span>{date.date}</span>
@@ -29,13 +28,16 @@ const Photo = ({ date }: Props) => {
           </Button>
         </div>
       </div>
-      <Image
-        src={date.url}
-        alt={date.title}
-        layout="fixed"
-        width={900}
-        height={800}
-      />
+      <div className="h-[25rem] w-[25rem] lg:h-[50rem] lg:w-[50rem]">
+        <Image
+          src={date.url}
+          alt={date.title}
+          layout="responsive"
+          width={1200}
+          height={1000}
+          objectFit="cover"
+        />
+      </div>
     </div>
   );
 };

@@ -9,7 +9,7 @@ const Layout = (props: Props) => {
   return (
     <>
       <Navbar />
-      <main className="bg-gray-900 min-h-screen text-white grid place-items-center">
+      <main className="bg-gray-900 min-h-screen text-white grid place-items-center overflow-y-hidden">
         {props.children}
       </main>
     </>

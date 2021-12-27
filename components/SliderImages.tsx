@@ -1,19 +1,15 @@
 import React from "react";
 import { DateImageType } from "../hooks/fetchDate";
-import { useDates } from "../hooks/fetchDates";
-import LoadingSpinner from "./LoadingSpinner";
 import Photo from "./Photo";
+interface Props {
+  dates: DateImageType[];
+}
 
-interface Props {}
-
-const SliderImages = (props: Props) => {
-  const { data: dates, isLoading, error } = useDates();
+const SliderImages = ({ dates }: Props) => {
   return (
-    <div>
-      {isLoading && <LoadingSpinner />}
-      {error && <p>Error: {error.message}</p>}
+    <div className="snap-x">
       {dates && dates.length > 0 && (
-        <div className="snap-x gap-10 overflow-x-scroll w-full inline-flex snap-mandatory px-20">
+        <div className="snap-start whitespace-nowrap no-scrollbar scroll-smooth touch-pan-x gap-10 overflow-x-scroll w-full inline-flex snap-mandatory px-20">
           {dates?.map((img: DateImageType) => (
             <Photo date={img} key={img.title} />
           ))}

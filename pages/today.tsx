@@ -4,10 +4,15 @@ import TodayPhoto from "../components/TodayPhoto";
 import Layout from "../components/Layout";
 import SliderImages from "../components/SliderImages";
 import Head from "next/head";
+import SideArrow from "../components/SideArrow";
+import { useDates } from "../hooks/fetchDates";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 interface Props {}
 
 const Today: NextPage = (props: Props) => {
+  const { data: dates, isLoading, error } = useDates();
+  console.log(isLoading);
   return (
     <>
       <Head>
@@ -24,11 +29,16 @@ const Today: NextPage = (props: Props) => {
         ></link>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
-        <div className="bg-gray-900 h-screen grid place-items-center">
-          <SliderImages />
-        </div>
-      </Layout>
+      {isLoading && <LoadingSpinner />}
+      {error && <p>Error: {error.message}</p>}
+      {dates && !isLoading && (
+        <Layout>
+          <SideArrow />
+          <div className="bg-gray-900 h-screen grid place-items-center">
+            <SliderImages dates={dates} />
+          </div>
+        </Layout>
+      )}
     </>
   );
 };
