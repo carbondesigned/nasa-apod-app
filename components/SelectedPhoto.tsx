@@ -15,11 +15,11 @@ const Photo = (props: Props) => {
   const { selectedDate } = useAppContext();
   const { data: date, isLoading, error } = useDate(selectedDate);
   return (
-    <Layout>
+    <Layout max>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {date && (
-        <div className="fixed inset-0">
+        <div className="fixed inset-0 mt-10">
           <div className="z-10 bg-gradient-to-t from-black to-transparent absolute inset-0 flex flex-col-reverse p-12 pointer-events-none">
             <div className="flex flex-col gap-2 text-white">
               <Link href="/today">
@@ -27,8 +27,12 @@ const Photo = (props: Props) => {
                   <Button primary>back</Button>
                 </a>
               </Link>
-              <h2 className="text-4xl">{date.title}</h2>
-              <p>{date.explanation}</p>
+              <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold">
+                {date.title}
+              </h2>
+              <p className="text-xs sm:text-sm md:text-2xl lg:text-2xl">
+                {date.explanation}
+              </p>
             </div>
           </div>
           <div className="w-full h-full">

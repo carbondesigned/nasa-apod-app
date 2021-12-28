@@ -7,7 +7,7 @@ interface Props {}
 const Navbar = (props: Props) => {
   const { setSelectedDate } = useAppContext();
   return (
-    <ul className="flex gap-6 fixed top-0 z-10 text-white p-2">
+    <ul className="flex gap-6 fixed top-0 z-10 text-white p-2 bg-gradient-to-b from-black to-transparent w-full">
       <li>
         <Link href={"/"}>
           <a onClick={() => setSelectedDate("")}>Home</a>
