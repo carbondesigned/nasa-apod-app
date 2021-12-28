@@ -20,7 +20,7 @@ const Photo = (props: Props) => {
       {error && <p>Error: {error.message}</p>}
       {date && (
         <div className="fixed inset-0">
-          <div className="z-10 bg-gradient-to-t from-black to-transparent absolute inset-0 flex flex-col-reverse p-12">
+          <div className="z-10 bg-gradient-to-t from-black to-transparent absolute inset-0 flex flex-col-reverse p-12 pointer-events-none">
             <div className="flex flex-col gap-2 text-white">
               <Link href="/today">
                 <a className="text-white max-w-max">
@@ -31,21 +31,29 @@ const Photo = (props: Props) => {
               <p>{date.explanation}</p>
             </div>
           </div>
-          {date.url ? (
-            <div className="w-full h-full object-contain">
+          <div className="w-full h-full">
+            {date.media_type === "video" ? (
+              <iframe
+                className="w-full h-full"
+                src={date.url}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : date.media_type === "image" ? (
               <Image
                 src={date.url}
-                alt="Astronomy Picture of the Day"
+                alt={date.title}
                 layout="responsive"
                 width={1200}
                 height={1000}
+                objectFit="cover"
               />
-            </div>
-          ) : (
-            <div>
+            ) : (
               <LoadingSpinner />
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
     </Layout>

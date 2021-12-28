@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import api from "../axiosStore";
 
 interface TodayImageType {
+  media_type: string;
   date: string;
   explanation: string;
   hdurl: string;

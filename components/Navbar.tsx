@@ -19,7 +19,7 @@ const Navbar = (props: Props) => {
         </Link>
       </li>
       <li>
-        <Link href={"/"}>
+        <Link href={"/all"}>
           <a onClick={() => setSelectedDate("")}>Browse</a>
         </Link>
       </li>

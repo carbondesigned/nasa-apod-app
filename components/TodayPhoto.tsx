@@ -5,6 +5,7 @@ import Button from "./Button";
 
 import { titleToSlug } from "../util/titleToSlug";
 import { useAppContext } from "../contexts/appContext";
+import LoadingSpinner from "./LoadingSpinner";
 
 interface Props {
   menu?: boolean;
@@ -47,15 +48,29 @@ const Photo = (props: Props) => {
               </div>
             </div>
           )}
-          {today.url ? (
-            <Image
-              src={today.url}
-              alt="Astronomy Picture of the Day"
-              layout="fill"
-            />
-          ) : (
-            <p>loading...</p>
-          )}
+          <div className="w-full h-full">
+            {today.media_type === "video" ? (
+              <iframe
+                className="w-full h-full"
+                src={today.url}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : today.media_type === "image" ? (
+              <Image
+                src={today.url}
+                alt={today.title}
+                layout="responsive"
+                width={1200}
+                height={1000}
+                objectFit="cover"
+              />
+            ) : (
+              <LoadingSpinner />
+            )}
+          </div>
         </div>
       )}
     </>

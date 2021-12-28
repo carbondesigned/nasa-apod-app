@@ -30,7 +30,7 @@ const Home: NextPage = () => {
               </Button>
             </li>
             <li>
-              <Button center primary>
+              <Button center primary link href={"/all"}>
                 View All
               </Button>
             </li>
