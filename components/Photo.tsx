@@ -15,7 +15,7 @@ const Photo = ({ date }: Props) => {
       <div className="z-10 bg-gradient-to-t from-black to-transparent absolute inset-0 flex flex-col-reverse p-12">
         <div className="flex flex-col gap-2">
           <span>{date.date}</span>
-          <h2 className="text-4xl">{date.title}</h2>
+          <h2 className="text-4xl whitespace-normal">{date.title}</h2>
           <p className="truncate">{date.explanation}</p>
           <Button
             max
