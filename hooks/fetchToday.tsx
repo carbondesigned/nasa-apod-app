@@ -1,5 +1,5 @@
-import { useQuery } from "react-query";
-import api from "../axiosStore";
+import { useQuery } from 'react-query';
+import api from '../axiosStore';
 
 interface TodayImageType {
   media_type: string;
@@ -15,7 +15,10 @@ const fetchToday = async () => {
 };
 
 const useToday = () => {
-  return useQuery<TodayImageType, Error>("today", fetchToday);
+  return useQuery<TodayImageType, Error>('today', fetchToday, {
+    refetchOnWindowFocus: false,
+    staleTime: 24 * 60 * 60 * 1000, // 1 day
+  });
 };
 
 export { useToday, fetchToday };

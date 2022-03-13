@@ -1,8 +1,8 @@
-import Image from "next/image";
-import React from "react";
-import { useAppContext } from "../contexts/appContext";
-import { titleToSlug } from "../util/titleToSlug";
-import Button from "./Button";
+import Image from 'next/image';
+import React from 'react';
+import { useAppContext } from '../contexts/appContext';
+import { titleToSlug } from '../util/titleToSlug';
+import Button from './Button';
 
 interface Props {
   date: any;
@@ -12,16 +12,16 @@ interface Props {
 const Photo = ({ date, grid }: Props) => {
   const { setSelectedDate } = useAppContext();
   return (
-    <div className="w-full relative rounded-3xl">
-      <div className="z-10 bg-gradient-to-t from-black to-transparent absolute inset-0 flex flex-col-reverse p-12">
-        <div className="flex flex-col gap-2">
+    <div className='w-full relative rounded-3xl snap-center'>
+      <div className='z-10 bg-gradient-to-t from-black to-transparent absolute inset-0 flex flex-col-reverse p-6 w-full rounded-3xl'>
+        <div className='flex flex-col gap-2'>
           <span>{date.date}</span>
           <h2
-            className={`${!grid ? "text-4xl whitespace-normal" : "text-2xl"}`}
+            className={`${!grid ? 'text-4xl whitespace-normal' : 'text-2xl'}`}
           >
             {date.title}
           </h2>
-          <p className="truncate">{date.explanation}</p>
+          <p className='truncate'>{date.explanation}</p>
           <Button
             max
             secondary
@@ -36,27 +36,27 @@ const Photo = ({ date, grid }: Props) => {
       <div
         className={`rounded-3xl overflow-hidden ${
           !grid
-            ? "h-[25rem] w-[25rem] lg:h-[50rem] lg:w-[50rem] "
-            : "h-[25rem] w-[25rem] lg:h-[20rem] lg:w-[20rem]"
+            ? 'h-[20rem] w-[20rem] lg:h-[35rem] lg:w-[35rem] '
+            : 'h-[25rem] w-[25rem] lg:h-[20rem] lg:w-[20rem]'
         }`}
       >
-        {date.media_type === "video" ? (
+        {date.media_type === 'video' ? (
           <iframe
-            className="w-full h-full"
+            className='w-full h-full'
             src={date.url}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            title='YouTube video player'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
           ></iframe>
         ) : (
           <Image
             src={date.url}
             alt={date.title}
-            layout="responsive"
+            layout='responsive'
             width={1200}
             height={1000}
-            objectFit="cover"
+            objectFit='cover'
           />
         )}
       </div>

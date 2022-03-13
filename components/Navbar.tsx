@@ -1,29 +1,46 @@
-import React from "react";
-import Link from "next/link";
-import { useAppContext } from "../contexts/appContext";
+import React from 'react';
+import Link from 'next/link';
+import { useAppContext } from '../contexts/appContext';
 
 interface Props {}
 
 const Navbar = (props: Props) => {
   const { setSelectedDate } = useAppContext();
   return (
-    <ul className="flex gap-6 fixed top-0 z-10 text-white p-2 bg-gradient-to-b from-black to-transparent w-full">
-      <li>
-        <Link href={"/"}>
-          <a onClick={() => setSelectedDate("")}>Home</a>
-        </Link>
-      </li>
-      <li>
-        <Link href={"/today"}>
-          <a onClick={() => setSelectedDate("")}>Today</a>
-        </Link>
-      </li>
-      <li>
-        <Link href={"/all"}>
-          <a onClick={() => setSelectedDate("")}>Browse</a>
-        </Link>
-      </li>
-    </ul>
+    <nav className='flex flex-col absolute w-full justify-end items-center min-h-screen z-50 scroll pointer-events-none'>
+      <ul className='flex gap-6 md:gap-6 z-50 text-white w-full bg-purple-500 px-12 md:px-16 py-6 max-w-fit rounded-full my-12 pointer-events-auto'>
+        <li>
+          <Link href={'/'}>
+            <a
+              className='hover:bg-gray-200 hover:text-black duration-200 h-full w-full rounded-full hover:px-6 hover:py-2'
+              onClick={() => setSelectedDate('')}
+            >
+              Home
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href={'/today'}>
+            <a
+              className='hover:bg-gray-200 hover:text-black duration-200 h-full w-full rounded-full hover:px-6 hover:py-2'
+              onClick={() => setSelectedDate('')}
+            >
+              Today
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href={'/all'}>
+            <a
+              className='hover:bg-gray-200 hover:text-black duration-200 h-full w-full rounded-full hover:px-6 hover:py-2'
+              onClick={() => setSelectedDate('')}
+            >
+              Browse
+            </a>
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

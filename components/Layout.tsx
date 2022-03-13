@@ -1,5 +1,5 @@
-import React from "react";
-import Navbar from "./Navbar";
+import React from 'react';
+import Navbar from './Navbar';
 
 interface Props {
   children: React.ReactNode;
@@ -9,10 +9,10 @@ interface Props {
 const Layout = (props: Props) => {
   return (
     <>
-      <Navbar />
+      {!props.max && <Navbar />}
       <main
         className={`bg-gray-900 min-h-screen text-white grid place-items-center ${
-          props.max ? "overflow-y-auto" : " overflow-y-hidden"
+          props.max ? 'overflow-y-auto' : ' overflow-y-hidden'
         }`}
       >
         {props.children}
